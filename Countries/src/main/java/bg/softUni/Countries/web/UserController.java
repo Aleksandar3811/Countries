@@ -69,6 +69,12 @@ public class UserController {
 
         return modelAndView;
     }
+    @GetMapping("/profile")
+    public ModelAndView profile(){
+        ModelAndView mvn=new ModelAndView("profile");
+        mvn.addObject("profileData",userService.getProfileData());
+        return mvn;
+    }
 
 
 

@@ -26,13 +26,13 @@
                 <div class="profile-card p-3 py-4">
                     <div class="text-center"><img src="/images/profile.jpg" width="100" class="rounded-circle"></div>
                     <div class="text-center mt-3">
-                        <span class="bg-secondary p-1 px-4 rounded text-white">Pro</span>
+                        <span class="bg-secondary p-1 px-4 rounded text-white"  th:text="${profileData.level}">Pro</span>
                         <h5 class="mt-4 mb-0">Full name</h5>
-                        <span>UI/UX Designer</span>
+                        <span th:text="${profileData.fullName}">UI/UX Designer</span>
                         <h5 class="mt-2 mb-0">Username</h5>
-                        <span>UI/UX Designer</span>
+                        <span  th:text="${profileData.username}">UI/UX Designer</span>
                         <h5 class="mt-2 mb-0">Age</h5>
-                        <span>33</span>
+                        <span  th:text="${profileData.age}">33</span>
                         <div class="px-4 mt-5">
                             <p class="fonts">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim et nostrum
                                 optio perferendis quam quod ratione rem sit soluta ut! A dolor laborum, maiores neque
@@ -45,8 +45,8 @@
                             <li><i class="fab fa-google"></i></li>
                         </ul>
                         <div class="buttons">
-                            <button class="btn btn-outline-primary px-4">Back</button>
-<!--                            <button class="btn btn-primary px-4 ms-3">Contact</button>-->
+                            <a class="btn btn-outline-primary px-4 text-white" th:href="@{/}">Back</a>
+                            <!--                            <button class="btn btn-primary px-4 ms-3">Contact</button>-->
                         </div>
                     </div>
                 </div>
