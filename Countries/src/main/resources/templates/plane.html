@@ -22,14 +22,16 @@
     <!-- Navigation -->
     <div th:replace="~{fragments/navbar::navbar}"></div>
 
-    <section class="road">
-        <div>
-            <h2>Title</h2>
-            <p>Very long description</p>
-            <a href="/" class="btn">Learn More</a>
-        </div>
-        <img class="rounded-circle w-75 ml-5" src="/images/pic1.jpg" alt="Title image">
-    </section>
+    <th:block th:each="country: ${countries}">
+        <section class="road">
+            <div>
+                <h2 th:text="${country.name}">Title</h2>
+                <p th:text="${country.description}">Very long description</p>
+                <a th:href="@{/country/{id}(id=${country.id})}" class="btn">Learn More</a>
+            </div>
+            <img class="rounded-circle w-75 ml-5" th:src="${country.imageUrl}" alt="Title image">
+        </section>
+    </th:block>
 </div>
 <!-- Wrapper Ends -->
 </body>

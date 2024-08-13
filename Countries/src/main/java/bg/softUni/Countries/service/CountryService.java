@@ -1,13 +1,12 @@
 package bg.softUni.Countries.service;
 
+import bg.softUni.Countries.entity.CategoryType;
 import bg.softUni.Countries.entity.Country;
 import bg.softUni.Countries.entity.Picture;
-import bg.softUni.Countries.entity.dto.AddCountryDto;
-import bg.softUni.Countries.entity.dto.CountryDetailsCommentDTO;
-import bg.softUni.Countries.entity.dto.CountryDetailsDTO;
-import bg.softUni.Countries.entity.dto.CountryShortInfoDto;
+import bg.softUni.Countries.entity.dto.*;
 import bg.softUni.Countries.exceptions.CountryNotFoundException;
 import bg.softUni.Countries.repository.CountryRepository;
+import bg.softUni.Countries.repository.PictureRepository;
 import bg.softUni.Countries.service.helper.UserHelperService;
 import bg.softUni.Countries.util.YoutubeLinkConverter;
 import org.modelmapper.ModelMapper;
@@ -24,11 +23,13 @@ public class CountryService {
     private final CountryRepository countryRepository;
     private final ModelMapper modelMapper;
     private final UserHelperService userHelperService;
+    private final PictureRepository pictureRepository;
 
-    public CountryService(CountryRepository countryRepository, ModelMapper modelMapper, UserHelperService userHelperService) {
+    public CountryService(CountryRepository countryRepository, ModelMapper modelMapper, UserHelperService userHelperService, PictureRepository pictureRepository) {
         this.countryRepository = countryRepository;
         this.modelMapper = modelMapper;
         this.userHelperService = userHelperService;
+        this.pictureRepository = pictureRepository;
     }
 
     @Transactional
@@ -71,4 +72,17 @@ public class CountryService {
         }
 
 
+    @Transactional(readOnly = true)
+    public List<CountryCategoryDTO> getCountryByCategory(CategoryType category) {
+        List<Country> allByCategoryName = countryRepository.findAllByCategories_Name(category);
+
+        return allByCategoryName.stream()
+                .map(route -> {
+                    CountryCategoryDTO dto = modelMapper.map(route, CountryCategoryDTO.class);
+                    dto.setImageUrl(pictureRepository.findFirstByCountry_Id(dto.getId()).getUrl());
+
+                    return dto;
+                })
+                .toList();
+    }
 }

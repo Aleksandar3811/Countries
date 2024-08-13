@@ -69,6 +69,22 @@ public class CountryController {
 
         return modelAndView;
     }
+    @GetMapping("/countries/{category}")
+    public ModelAndView getCountriesByCategory(@PathVariable CategoryType category) {
+        String view = "";
+        switch (category){
+            case CAR -> view ="car";
+            case SHIP -> view ="ship";
+            case PLANE -> view ="plane";
+            case MOTORCYCLE -> view ="motorcycle";
+        }
+
+        ModelAndView modelAndView = new ModelAndView(view);
+
+        modelAndView.addObject("countries", countryService.getCountryByCategory(category));
+
+        return modelAndView;
+    }
 
 
 

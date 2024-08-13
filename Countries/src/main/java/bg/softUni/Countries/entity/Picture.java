@@ -11,7 +11,7 @@ public class Picture {
 
     private String title;
 
-    @Column(columnDefinition = "TEXT",nullable = false)
+    @Column(columnDefinition = "TEXT")
     private String url;
 
     @ManyToOne(optional = false)

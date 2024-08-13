@@ -12,6 +12,10 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
+
+  sql:
+    init:
+      mode: never
   #  sql:
   #      init:
   #        mode: always
