@@ -61,6 +61,15 @@ public class CountryController {
 
         return "redirect:/add-country";
     }
+    @GetMapping("country/{id}")
+    public ModelAndView details(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("country-details");
+
+        modelAndView.addObject("country", countryService.getDetails(id));
+
+        return modelAndView;
+    }
+
 
 
 }

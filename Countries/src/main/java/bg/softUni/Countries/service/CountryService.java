@@ -3,7 +3,10 @@ package bg.softUni.Countries.service;
 import bg.softUni.Countries.entity.Country;
 import bg.softUni.Countries.entity.Picture;
 import bg.softUni.Countries.entity.dto.AddCountryDto;
+import bg.softUni.Countries.entity.dto.CountryDetailsCommentDTO;
+import bg.softUni.Countries.entity.dto.CountryDetailsDTO;
 import bg.softUni.Countries.entity.dto.CountryShortInfoDto;
+import bg.softUni.Countries.exceptions.CountryNotFoundException;
 import bg.softUni.Countries.repository.CountryRepository;
 import bg.softUni.Countries.service.helper.UserHelperService;
 import bg.softUni.Countries.util.YoutubeLinkConverter;
@@ -50,4 +53,22 @@ public class CountryService {
 
         countryRepository.save(toInsert);
     }
+
+
+        @Transactional(readOnly = true)
+        public CountryDetailsDTO getDetails(Long id) {
+            Country country = countryRepository.findById(id)
+                    .orElseThrow(() -> new CountryNotFoundException("Route with id: " + id + " was not found"));
+
+            CountryDetailsDTO dto = modelMapper.map(country, CountryDetailsDTO.class);
+            dto.setVideoUrl("https://www.youtube.com/embed/" + dto.getVideoUrl());
+            dto.setImageUrls(List.of("/images/pic4.jpg", "/images/pic1.jpg"));
+            dto.setComments(country.getComments().stream()
+                    .map(comment -> modelMapper.map(comment, CountryDetailsCommentDTO.class))
+                    .toList());
+
+            return dto;
+        }
+
+
 }
