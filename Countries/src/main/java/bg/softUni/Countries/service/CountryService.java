@@ -60,7 +60,7 @@ public class CountryService {
         @Transactional(readOnly = true)
         public CountryDetailsDTO getDetails(Long id) {
             Country country = countryRepository.findById(id)
-                    .orElseThrow(() -> new CountryNotFoundException("Route with id: " + id + " was not found"));
+                    .orElseThrow(() -> new CountryNotFoundException("Country with id: " + id + " was not found"));
 
             CountryDetailsDTO dto = modelMapper.map(country, CountryDetailsDTO.class);
             dto.setVideoUrl("https://www.youtube.com/embed/" + dto.getVideoUrl());

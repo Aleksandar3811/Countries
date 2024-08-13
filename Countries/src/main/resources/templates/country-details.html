@@ -21,7 +21,7 @@
 <div class="wrapper">
     <div th:replace="~{fragments/navbar::navbar}"></div>
 
-    <input type="hidden" name="countryId" id="countryId">
+<!--    <input type="hidden" name="countryId" id="countryId">-->
     <div class="details-main">
         <section class="route-info text-center">
             <h4 th:text="${country.name}" id="track-name"></h4>
@@ -40,7 +40,7 @@
                       th:method="POST"
                       enctype="multipart/form-data"
                 >
-                    <input type="hidden" id="id" name="routeId" th:value="${country.id}">
+                    <input type="hidden" id="id" name="countryId" th:value="${country.id}">
                     <div class="form-group">
                         <label>
                             <input type="text" name="title">
@@ -87,12 +87,12 @@
 
 
             <div>
-                <!-- Comments submission -->
-                <!--                <form id="commentForm"-->
-                <!--                      th:method="POST"-->
-                <!--                      th:action="@{/comments/create}">-->
+<!--                 Comments submission -->
+                                <form id="commentForm"
+                                      th:method="POST"
+                                      th:action="@{/comments/create}">
                 <div class="form-group">
-                    <input type="hidden" name="routeId" id="routeId" th:value="${country.id}">
+                    <input type="hidden" name="countryId" id="countryId" th:value="${country.id}">
                     <h4>Leave a comment</h4>
                     <label for="message">Message</label>
                     <textarea name="message"
@@ -112,7 +112,7 @@
                            id="postComment"
                            value="Post Comment"/>
                 </div>
-                <!--                </form>-->
+                                </form>
                 <!-- Comments submission -->
             </div>
 
@@ -128,7 +128,9 @@
 	<!-- Scripts: track and comments 
     <script th:src="@{/js/track.js}"></script>
     <script th:src="@{/js/comments.js}"></script>
+
 	-->
+    <script th:src="@{/js/comments.js}"></script>
 </div>
 <footer class="footer bg-blur rounded">
     <div class="container-fluid text-center">
