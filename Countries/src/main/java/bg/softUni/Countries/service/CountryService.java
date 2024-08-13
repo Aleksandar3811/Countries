@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -84,5 +85,16 @@ public class CountryService {
                     return dto;
                 })
                 .toList();
+    }
+    @Transactional(readOnly = true)
+    public CountryCategoryDTO getMostCommentedCountry() {
+        Country mostCommentedCountry = countryRepository.findAll().stream()
+                .max(Comparator.comparingInt(route -> route.getComments().size()))
+                .orElse(null);
+
+        CountryCategoryDTO countryDto = modelMapper.map(mostCommentedCountry, CountryCategoryDTO.class);
+        countryDto.setImageUrl("http://res.cloudinary.com/ch-cloud/image/upload/v1630581072/d47iy8kxv6qni8euhojk.jpg");
+
+        return countryDto;
     }
 }
