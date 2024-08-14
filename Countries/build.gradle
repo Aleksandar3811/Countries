@@ -34,6 +34,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	// https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity6
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	// https://mvnrepository.com/artifact/com.cloudinary/cloudinary-http44
+	implementation 'com.cloudinary:cloudinary-http44:1.39.0'
+	// https://mvnrepository.com/artifact/com.cloudinary/cloudinary-taglib
+	implementation 'com.cloudinary:cloudinary-taglib:1.39.0'
 }
 
 tasks.named('test') {
