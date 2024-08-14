@@ -24,16 +24,16 @@
         <nav class="main-nav">
             <ul>
                 <li sec:authorize="!isAuthenticated()">
-                    <a th:href="@{/}">Home</a>
+                    <a th:href="@{/}"  th:text="#{nav_bar_home}">Home</a>
                 </li>
                 <li sec:authorize="!isAuthenticated()">
-                    <a th:href="@{/users/login}">Login</a>
+                    <a th:href="@{/users/login}"  th:text="#{nav_bar_login}">Login</a>
                 </li>
                 <li sec:authorize="!isAuthenticated()">
-                    <a th:href="@{users/register}">Register</a>
+                    <a th:href="@{users/register}"  th:text="#{nav_bar_login_register}">Register</a>
                 </li>
                 <li sec:authorize="!isAuthenticated()">
-                    <a th:href="@{/about}">About</a>
+                    <a th:href="@{/about}"  th:text="#{nav_bar_about}">About</a>
                 </li>
                 <li sec:authorize="isAuthenticated()">
                     <a th:href="@{/add-country}">Add new country</a>
@@ -50,6 +50,19 @@
                             th:action="@{/users/logout}"
                     >
                         <button type="submit" >Logout</button>
+                    </form>
+
+                </li>
+                <li class="nav-item">
+                    <form th:method="get">
+                        <label class="text-white" for="lang" th:text="#{nav_bar_language}">Language</label>
+                        <select
+                                id="lang"
+                                name="lang"
+                                onchange="this.form.submit()">
+                            <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                            <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                        </select>
                     </form>
 
                 </li>
