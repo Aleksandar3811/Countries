@@ -1,5 +1,6 @@
 package bg.softUni.Countries.service;
 
+import bg.softUni.Countries.config.Time;
 import bg.softUni.Countries.entity.CategoryType;
 import bg.softUni.Countries.entity.Country;
 import bg.softUni.Countries.entity.Picture;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -25,12 +27,14 @@ public class CountryService {
     private final ModelMapper modelMapper;
     private final UserHelperService userHelperService;
     private final PictureRepository pictureRepository;
+    private final Time time;
 
-    public CountryService(CountryRepository countryRepository, ModelMapper modelMapper, UserHelperService userHelperService, PictureRepository pictureRepository) {
+    public CountryService(CountryRepository countryRepository, ModelMapper modelMapper, UserHelperService userHelperService, PictureRepository pictureRepository, Time time) {
         this.countryRepository = countryRepository;
         this.modelMapper = modelMapper;
         this.userHelperService = userHelperService;
         this.pictureRepository = pictureRepository;
+        this.time = time;
     }
 
     @Transactional
@@ -57,20 +61,20 @@ public class CountryService {
     }
 
 
-        @Transactional(readOnly = true)
-        public CountryDetailsDTO getDetails(Long id) {
-            Country country = countryRepository.findById(id)
-                    .orElseThrow(() -> new CountryNotFoundException("Country with id: " + id + " was not found"));
+    @Transactional(readOnly = true)
+    public CountryDetailsDTO getDetails(Long id) {
+        Country country = countryRepository.findById(id)
+                .orElseThrow(() -> new CountryNotFoundException("Country with id: " + id + " was not found"));
 
-            CountryDetailsDTO dto = modelMapper.map(country, CountryDetailsDTO.class);
-            dto.setVideoUrl("https://www.youtube.com/embed/" + dto.getVideoUrl());
-            dto.setImageUrls(List.of("/images/pic4.jpg", "/images/pic1.jpg"));
-            dto.setComments(country.getComments().stream()
-                    .map(comment -> modelMapper.map(comment, CountryDetailsCommentDTO.class))
-                    .toList());
+        CountryDetailsDTO dto = modelMapper.map(country, CountryDetailsDTO.class);
+        dto.setVideoUrl("https://www.youtube.com/embed/" + dto.getVideoUrl());
+        dto.setImageUrls(List.of("/images/pic4.jpg", "/images/pic1.jpg"));
+        dto.setComments(country.getComments().stream()
+                .map(comment -> modelMapper.map(comment, CountryDetailsCommentDTO.class))
+                .toList());
 
-            return dto;
-        }
+        return dto;
+    }
 
 
     @Transactional(readOnly = true)
@@ -86,6 +90,7 @@ public class CountryService {
                 })
                 .toList();
     }
+
     @Transactional(readOnly = true)
     public CountryCategoryDTO getMostCommentedCountry() {
         Country mostCommentedCountry = countryRepository.findAll().stream()
@@ -97,4 +102,8 @@ public class CountryService {
 
         return countryDto;
     }
+    public String getCurrentTime() {
+        return time.getCurrentTime();
+    }
+
 }

@@ -29,9 +29,9 @@
             <a th:href="@{/countries}" class="btn">To countries</a>
         </div>
         <div class="top-box top-box-a">
-            <h4>Weather in New York</h4>
-            <h4><span id="box-a-temp">15</span><span>&#8451;</span></h4>
-            <img id="box-a-img" src="/images/sun.png" height="150px" alt="">
+            <h4>Time</h4>
+            <h4><span id="box-a-temp" th:text="${time}">15</span></h4>
+            <img id="box-a-img" src="/images/clock.png" height="150px" alt="">
         </div>
         <div class="top-box top-box-b">
             <h4>Weather in Tokyo</h4>
@@ -96,7 +96,7 @@
 <footer class="footer bg-blur rounded">
     <div class="container-fluid text-center">
         <div class="h5 text-white">
-            &copy; Lucho, Chocho & Spring Advanced Students 2021. All rights reserved.
+            &copy; Aleksandar SofUni Project; All rights reserved.
         </div>
     </div>
 </footer>
