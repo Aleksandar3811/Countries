@@ -73,8 +73,8 @@
     </section>
 
     <!-- Info Section -->
-    <section class="road">
-        <img th:src="${commentedCountry.imageUrl}" alt="">
+    <section class="road" th:if="${commentedCountry !=null}">
+        <img  th:src="${commentedCountry.imageUrl}" alt="">
         <div>
             <h2 th:text="${commentedCountry.name}">The most commented country</h2>
             <p th:text="${commentedCountry.description}">Read more about the most commented country and do not miss the

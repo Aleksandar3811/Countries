@@ -26,7 +26,7 @@ public class PictureService {
         String path = cloudinaryService.upload(uploadPictureDTO.getPicture(), "");
 
         Picture picture = new Picture();
-        picture.setUrl(path);
+        picture.setImageUrl(path);
         picture.setTitle(uploadPictureDTO.getTitle());
         picture.setRoute(countryHelperService.getByIdOrThrow(uploadPictureDTO.getCountryId()));
         picture.setAuthor(userHelperService.getUser());

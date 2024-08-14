@@ -47,8 +47,8 @@ public class CountryService {
 
     private CountryShortInfoDto mapShortInfoDto(Country country) {
         CountryShortInfoDto dto = modelMapper.map(country, CountryShortInfoDto.class);
-        Optional<Picture> imageUrl = country.getPictures().stream().findFirst();
-        //dto.setImageUrl(imageUrl.get().getUrl());
+        Optional<Picture> first = country.getPictures().stream().findFirst();
+        first.ifPresent(picture -> dto.setImageUrl(first.get().getImageUrl()));
         return dto;
     }
 
@@ -84,7 +84,7 @@ public class CountryService {
         return allByCategoryName.stream()
                 .map(route -> {
                     CountryCategoryDTO dto = modelMapper.map(route, CountryCategoryDTO.class);
-                    dto.setImageUrl(pictureRepository.findFirstByCountry_Id(dto.getId()).getUrl());
+                    dto.setImageUrl(pictureRepository.findFirstByCountry_Id(dto.getId()).getImageUrl());
 
                     return dto;
                 })
@@ -93,6 +93,11 @@ public class CountryService {
 
     @Transactional(readOnly = true)
     public CountryCategoryDTO getMostCommentedCountry() {
+        if (countryRepository.count()==0){
+            return null;
+        }
+
+
         Country mostCommentedCountry = countryRepository.findAll().stream()
                 .max(Comparator.comparingInt(route -> route.getComments().size()))
                 .orElse(null);

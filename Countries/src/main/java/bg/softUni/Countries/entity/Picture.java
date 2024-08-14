@@ -12,7 +12,7 @@ public class Picture {
     private String title;
 
     @Column(columnDefinition = "TEXT")
-    private String url;
+    private String imageUrl;
 
     @ManyToOne(optional = false)
     private User author;
@@ -41,12 +41,12 @@ public class Picture {
         this.title = title;
     }
 
-    public String getUrl() {
-        return url;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public User getAuthor() {
