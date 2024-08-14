@@ -12,9 +12,6 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "gpx_coordinates", columnDefinition = "LONGTEXT")
-    private String gpxCoordinates;
-
     @Enumerated(EnumType.STRING)
     private Level level;
 
@@ -75,14 +72,6 @@ public class Country {
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
-    }
-
-    public String getGpxCoordinates() {
-        return gpxCoordinates;
-    }
-
-    public void setGpxCoordinates(String gpxCoordinates) {
-        this.gpxCoordinates = gpxCoordinates;
     }
 
     public Level getLevel() {

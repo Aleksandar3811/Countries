@@ -18,9 +18,3 @@ INSERT INTO categories (id, description, name)
 VALUES ('4', 'Tracks for Ship.', 'SHIP');
 
 
-
-
-
-
-
-

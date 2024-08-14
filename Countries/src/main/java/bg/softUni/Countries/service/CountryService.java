@@ -1,11 +1,13 @@
 package bg.softUni.Countries.service;
 
 import bg.softUni.Countries.config.Time;
+import bg.softUni.Countries.entity.Category;
 import bg.softUni.Countries.entity.CategoryType;
 import bg.softUni.Countries.entity.Country;
 import bg.softUni.Countries.entity.Picture;
 import bg.softUni.Countries.entity.dto.*;
 import bg.softUni.Countries.exceptions.CountryNotFoundException;
+import bg.softUni.Countries.repository.CategoryRepository;
 import bg.softUni.Countries.repository.CountryRepository;
 import bg.softUni.Countries.repository.PictureRepository;
 import bg.softUni.Countries.service.helper.UserHelperService;
@@ -13,12 +15,13 @@ import bg.softUni.Countries.util.YoutubeLinkConverter;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
+
 
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class CountryService {
@@ -28,13 +31,16 @@ public class CountryService {
     private final UserHelperService userHelperService;
     private final PictureRepository pictureRepository;
     private final Time time;
+    private final CategoryRepository categoryRepository;
 
-    public CountryService(CountryRepository countryRepository, ModelMapper modelMapper, UserHelperService userHelperService, PictureRepository pictureRepository, Time time) {
+
+    public CountryService(CountryRepository countryRepository, ModelMapper modelMapper, UserHelperService userHelperService, PictureRepository pictureRepository, Time time, CategoryRepository categoryRepository) {
         this.countryRepository = countryRepository;
         this.modelMapper = modelMapper;
         this.userHelperService = userHelperService;
         this.pictureRepository = pictureRepository;
         this.time = time;
+        this.categoryRepository = categoryRepository;
     }
 
     @Transactional
@@ -52,10 +58,13 @@ public class CountryService {
         return dto;
     }
 
-    public void add(AddCountryDto data, MultipartFile file) {
+    public void add(AddCountryDto data) {
+
+         Category category=categoryRepository.findByName(data.getCategoryType());
         Country toInsert = modelMapper.map(data, Country.class);
         toInsert.setVideoURL(YoutubeLinkConverter.convert(data.getVideoUrl()));
         toInsert.setAuthor(userHelperService.getUser());
+        toInsert.setCategories(Set.of(category));
 
         countryRepository.save(toInsert);
     }

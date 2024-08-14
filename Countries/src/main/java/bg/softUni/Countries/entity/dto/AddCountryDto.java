@@ -1,15 +1,17 @@
 package bg.softUni.Countries.entity.dto;
 
+import bg.softUni.Countries.entity.CategoryType;
 import bg.softUni.Countries.entity.Level;
 
 public class AddCountryDto {
     private String name;
     private String description;
 
-    private String gpxCoordinates;
     private Level level;
 
     private String videoUrl;
+
+    private CategoryType categoryType;
 
     public AddCountryDto() {
     }
@@ -44,5 +46,14 @@ public class AddCountryDto {
 
     public void setVideoUrl(String videoUrl) {
         this.videoUrl = videoUrl;
+    }
+
+
+    public CategoryType getCategoryType() {
+        return categoryType;
+    }
+
+    public void setCategoryType(CategoryType categoryType) {
+        this.categoryType = categoryType;
     }
 }

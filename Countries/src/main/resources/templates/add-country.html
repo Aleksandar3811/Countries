@@ -70,19 +70,7 @@
         </div>
 
         <div>
-            <div class="form-group">
-                <label for="inputGpx" class="col-form-label ">GPX Coordinates</label>
-            </div>
-            <div class="form-group">
-                <input type="file"
-                       name="gpxCoordinates"
-                       required
-                       id="inputGpx"
-                       class="form-control-file"
-                       aria-describedby="inputGpxError">
-                <small id="inputGpxError"
-                       class="invalid-feedback  form-text bg-danger rounded">Must be valid GPX Coordinates</small>
-            </div>
+
         </div>
         <div>
             <div class="form-group">
@@ -106,14 +94,13 @@
         </div>
 
         <div>
-            <div class="form-group p-3">
-                <label class="p-2" for="categories">Categories:</label>
-                <input th:each="category: ${categoryTypes}" class="m-3"
-                       type="checkbox"
-                       name="categories"
-                       id="categories"
-                       th:value="category" th:text="${category}">
-                <br>
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" class="custom-select"
+                        th:field="*{categoryType}"
+                >
+                    <option th:each="category: ${categoryTypes}" th:value="${category}" th:text="${category}"></option>
+                </select>
             </div>
         </div>
 

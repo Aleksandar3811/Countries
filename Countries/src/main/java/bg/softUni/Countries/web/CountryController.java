@@ -52,12 +52,11 @@ public class CountryController {
 
     @PostMapping("/add-country")
     public String doAddRoute(
-            @Valid AddCountryDto data,
-            @RequestParam("gpxCoordinates") MultipartFile file
+            @Valid AddCountryDto data
     ) throws IOException {
 
 
-        countryService.add(data, file);
+        countryService.add(data);
 
         return "redirect:/add-country";
     }
