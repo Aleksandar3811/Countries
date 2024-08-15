@@ -1,7 +1,8 @@
 package bg.softUni.Countries.service.helper;
 
 import bg.softUni.Countries.entity.Country;
-import bg.softUni.Countries.exceptions.CountryNotFoundException;
+
+import bg.softUni.Countries.exceptions.ObjectNotFoundException;
 import bg.softUni.Countries.repository.CountryRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,6 @@ public class CountryHelperService {
 
     public Country getByIdOrThrow(Long id){
         return countryRepository.findById(id)
-                .orElseThrow(() -> new CountryNotFoundException("No country found with id " + id));
+                .orElseThrow(() -> new ObjectNotFoundException("No country found with id: ", id));
     }
 }

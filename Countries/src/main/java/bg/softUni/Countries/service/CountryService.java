@@ -6,7 +6,7 @@ import bg.softUni.Countries.entity.CategoryType;
 import bg.softUni.Countries.entity.Country;
 import bg.softUni.Countries.entity.Picture;
 import bg.softUni.Countries.entity.dto.*;
-import bg.softUni.Countries.exceptions.CountryNotFoundException;
+import bg.softUni.Countries.exceptions.ObjectNotFoundException;
 import bg.softUni.Countries.repository.CategoryRepository;
 import bg.softUni.Countries.repository.CountryRepository;
 import bg.softUni.Countries.repository.PictureRepository;
@@ -73,7 +73,7 @@ public class CountryService {
     @Transactional(readOnly = true)
     public CountryDetailsDTO getDetails(Long id) {
         Country country = countryRepository.findById(id)
-                .orElseThrow(() -> new CountryNotFoundException("Country with id: " + id + " was not found"));
+                .orElseThrow(() -> new ObjectNotFoundException("Not found",id));
 
         CountryDetailsDTO dto = modelMapper.map(country, CountryDetailsDTO.class);
         dto.setVideoUrl("https://www.youtube.com/embed/" + dto.getVideoUrl());

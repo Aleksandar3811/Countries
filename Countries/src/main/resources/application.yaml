@@ -16,9 +16,7 @@ spring:
   sql:
     init:
       mode: never
-  #  sql:
-  #      init:
-  #        mode: always
+
   jpa:
     # Choose either MySQL 8 or MySQL 5 below
     # For MySQL 8
@@ -37,8 +35,4 @@ cloudinary:
       api-key: 839459267175143
       api-secret: PssfIc_66TSh6ypRCahB_9hU_vI
       cloud-name: dw9mp2icx
-  #Cloudinary Properties
-  #cloudinary:
-  #api-key:
-  #api-secret:
-  #cloud-name:
+

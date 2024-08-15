@@ -38,6 +38,13 @@ dependencies {
 	implementation 'com.cloudinary:cloudinary-http44:1.39.0'
 	// https://mvnrepository.com/artifact/com.cloudinary/cloudinary-taglib
 	implementation 'com.cloudinary:cloudinary-taglib:1.39.0'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'com.maciejwalkowiak.spring:wiremock-spring-boot:2.1.2'
+
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testRuntimeOnly 'org.hsqldb:hsqldb'
+
 }
 
 tasks.named('test') {
