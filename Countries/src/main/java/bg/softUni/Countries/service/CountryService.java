@@ -112,7 +112,15 @@ public class CountryService {
                 .orElse(null);
 
         CountryCategoryDTO countryDto = modelMapper.map(mostCommentedCountry, CountryCategoryDTO.class);
-        countryDto.setImageUrl("http://res.cloudinary.com/ch-cloud/image/upload/v1630581072/d47iy8kxv6qni8euhojk.jpg");
+        if (mostCommentedCountry.getPictures()==null || mostCommentedCountry.getPictures().isEmpty()){
+            countryDto.setImageUrl("resources/static/images/noImg.png");
+        }
+        else {
+
+            countryDto.setImageUrl(mostCommentedCountry.getPictures().stream().findFirst().get().getImageUrl());
+        }
+
+
 
         return countryDto;
     }
@@ -120,4 +128,15 @@ public class CountryService {
         return time.getCurrentTime();
     }
 
+    public String getView(CategoryType category) {
+        String view = "";
+        switch (category){
+            case CAR -> view ="car";
+            case SHIP -> view ="ship";
+            case PLANE -> view ="plane";
+            case MOTORCYCLE -> view ="motorcycle";
+        }
+
+        return  view;
+    }
 }

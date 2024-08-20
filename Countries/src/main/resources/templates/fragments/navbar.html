@@ -23,7 +23,7 @@
     <header>
         <nav class="main-nav">
             <ul>
-                <li sec:authorize="!isAuthenticated()">
+                <li>
                     <a th:href="@{/}"  th:text="#{nav_bar_home}">Home</a>
                 </li>
                 <li sec:authorize="!isAuthenticated()">

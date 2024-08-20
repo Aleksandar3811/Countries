@@ -8,13 +8,11 @@ import bg.softUni.Countries.service.CountryService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
+
+
 import java.util.List;
 
 @Controller
@@ -53,7 +51,7 @@ public class CountryController {
     @PostMapping("/add-country")
     public String doAddRoute(
             @Valid AddCountryDto data
-    ) throws IOException {
+    )  {
 
 
         countryService.add(data);
@@ -70,13 +68,9 @@ public class CountryController {
     }
     @GetMapping("/countries/{category}")
     public ModelAndView getCountriesByCategory(@PathVariable CategoryType category) {
-        String view = "";
-        switch (category){
-            case CAR -> view ="car";
-            case SHIP -> view ="ship";
-            case PLANE -> view ="plane";
-            case MOTORCYCLE -> view ="motorcycle";
-        }
+
+
+        String view = countryService.getView(category);
 
         ModelAndView modelAndView = new ModelAndView(view);
 

@@ -16,6 +16,7 @@ public class UserRegisterDTO {
     @Max(90)
     private Integer age;
     @Size(min = 5)
+    @NotBlank
     private String password;
     private String confirmPassword;
 

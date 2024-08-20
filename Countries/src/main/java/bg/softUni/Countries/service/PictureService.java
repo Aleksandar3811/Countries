@@ -28,7 +28,7 @@ public class PictureService {
         Picture picture = new Picture();
         picture.setImageUrl(path);
         picture.setTitle(uploadPictureDTO.getTitle());
-        picture.setRoute(countryHelperService.getByIdOrThrow(uploadPictureDTO.getCountryId()));
+        picture.setCountry(countryHelperService.getByIdOrThrow(uploadPictureDTO.getCountryId()));
         picture.setAuthor(userHelperService.getUser());
 
         pictureRepository.save(picture);

@@ -57,11 +57,11 @@ public class Picture {
         this.author = author;
     }
 
-    public Country getRoute() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setRoute(Country country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 
