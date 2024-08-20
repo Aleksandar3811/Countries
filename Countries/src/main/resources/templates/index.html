@@ -24,9 +24,9 @@
     <!-- Top Container -->
     <section class="top-container">
         <div class="showcase">
-            <h1>Find amazing countries</h1>
-            <p>Sick of staying at home, sick of limitations? Be free! Find a country and enjoy the travel!</p>
-            <a th:href="@{/countries}" class="btn">To countries</a>
+            <h1 th:text="#{h1_index}">Find amazing countries</h1>
+            <p th:text="#{p_index}">Sick of staying at home, sick of limitations? Be free! Find a country and enjoy the travel!</p>
+            <a th:href="@{/countries}" class="btn" th:text="#{to_countries}">To countries</a>
         </div>
         <div class="top-box top-box-a">
             <h4>Time</h4>
@@ -34,7 +34,7 @@
             <img id="box-a-img" src="/images/clock.png" height="150px" alt="">
         </div>
         <div class="top-box top-box-b">
-            <h4>Weather in Tokyo</h4>
+            <h4 th:text="#{weather}">Weather in Tokyo</h4>
             <h4><span id="box-b-temp">27</span><span>&#8451;</span></h4>
             <img id="box-b-img" src="/images/cloudy.png" height="150px" alt="">
         </div>
@@ -45,29 +45,29 @@
         <a th:href="@{/countries/PLANE}" class="main-btn">
             <div class="box">
                 <img src="/images/plane.png" height="150px" alt="">
-                <h3>Plane</h3>
-                <p>Is this your flying day?</p>
+                <h3 th:text="#{h3_plane}">Plane</h3>
+                <p th:text="#{p_plane}">Is this your flying day?</p>
             </div>
         </a>
         <a th:href="@{/countries/SHIP}" class="main-btn">
             <div class="box">
                 <img src="/images/ship.png" height="150px" alt="">
-                <h3>Ship</h3>
-                <p>When you want to be one with the sea!</p>
+                <h3 th:text="#{h3_ship}">Ship</h3>
+                <p th:text="#{p_ship}">When you want to be one with the sea!</p>
             </div>
         </a>
         <a th:href="@{/countries/MOTORCYCLE}" class="main-btn">
             <div class="box">
                 <img src="/images/motorcycle.png" height="150px" alt="">
-                <h3>Motorcycle</h3>
-                <p>When you want the wind to blow on your face!</p>
+                <h3 th:text="#{h3_motorcycle}">Motorcycle</h3>
+                <p th:text="#{p_motorcycle}">When you want the wind to blow on your face!</p>
             </div>
         </a>
         <a th:href="@{/countries/CAR}" class="main-btn">
             <div class="box">
                 <img src="/images/car.png" height="150px" alt="">
-                <h3>Car</h3>
-                <p>Going on a trip with friends?</p>
+                <h3 th:text="#{h3_car}">Car</h3>
+                <p th:text="#{p_car}">Going on a trip with friends?</p>
             </div>
         </a>
     </section>
@@ -79,7 +79,7 @@
             <h2 th:text="${commentedCountry.name}">The most commented country</h2>
             <p th:text="${commentedCountry.description}">Read more about the most commented country and do not miss the
                 chance to visit it and give your opinion to help other users.</p>
-            <a th:href="@{/country/{id}(id=${commentedCountry.id})}" class="btn">Learn More</a>
+            <a th:href="@{/country/{id}(id=${commentedCountry.id})}" class="btn" th:text="#{learn_more}">Learn More</a>
         </div>
     </section>
 
